@@ -23,19 +23,19 @@ namespace Notification.Services
         public void NotifyUserChanges(User user)
         {
             if (!string.IsNullOrEmpty(user.Name))
-                ScheduleNotification(nameNotificationService, $"User {user.Name} has updated their Name.");
+                ScheduleNotification(nameNotificationService, $"User {user.Name} has updated his Name.");
 
             if (!string.IsNullOrEmpty(user.Email))
-                ScheduleNotification(emailNotificationService, $"User {user.Name} has updated their Email.");
+                ScheduleNotification(emailNotificationService, $"User {user.Name} has updated his Email.");
 
             if (!string.IsNullOrEmpty(user.Phone))
-                ScheduleNotification(phoneNotificationService, $"User {user.Name} has updated their Phone.");
+                ScheduleNotification(phoneNotificationService, $"User {user.Name} has updated his Phone.");
         }
 
-        private void ScheduleNotification(INotificationService notificationService, string message)
+        private async void ScheduleNotification(INotificationService notificationService, string message)
         {
             int notificationTime = GetNotificationTime(notificationService.GetType().Name + "Time");
-            Thread.Sleep(notificationTime);
+            await Task.Delay(notificationTime);
             notificationService.Notify(message);
         }
 

@@ -14,3 +14,9 @@ var notificationService = new NotificationService(
 var user = new User { Name = "Test Testov", Email = "test@example.com", Phone = "+123456789" };
 
 notificationService.NotifyUserChanges(user);
+
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine(i);
+    await Task.Delay(1000);
+}
